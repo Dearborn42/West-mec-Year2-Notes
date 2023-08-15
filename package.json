@@ -1,5 +1,7 @@
 {
+  "type": "module",
   "dependencies": {
+    "express.js": "^1.0.0",
     "sass": "^1.65.1"
   }
 }

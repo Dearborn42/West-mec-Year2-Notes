@@ -1,4 +1,4 @@
-@use './defaultTheme' as *;
+@use '../themes/defaultTheme' as *;
 
 $transition: all .03s linear;
 $spacing: 0.1rem;

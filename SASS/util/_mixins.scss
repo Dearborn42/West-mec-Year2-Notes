@@ -16,3 +16,9 @@
     background-position: center;
     background-image: url($image);
 }
+
+
+@mixin flex-center{
+    display: flex;
+    justify-content: center;
+}
