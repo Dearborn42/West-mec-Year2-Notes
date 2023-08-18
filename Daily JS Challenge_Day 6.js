@@ -83,9 +83,15 @@ try{
     let totalTrees = 0;
 
     while (y < map.length) {
-        console.log(x)
+
         if (map[y].charAt(x) === "#") {
             totalTrees++;
+            const newString = map[y].substring(0, x) + "X" + map[y].substring(x + 1);
+            map[y] = newString;
+        }
+        if (map[y].charAt(x) === ".") {
+            const newString = map[y].substring(0, x) + "O" + map[y].substring(x + 1);
+            map[y] = newString;
         }
         
         const right = 3;
@@ -98,9 +104,8 @@ try{
         
         y++;
     }
-
     console.log("Total trees encountered:", totalTrees);
-
+    console.log(map)
 }
 catch{
 
