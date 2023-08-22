@@ -1,5 +1,0 @@
-@import "./util/mixins", "./util/functions", "./util/variables", "./base/index";
-
-body{
-    @include cover-background("../../download.jfif")
-}
