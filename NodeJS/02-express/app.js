@@ -8,7 +8,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 app.get('/', (req, res) => {
     console.log(req.url);
-    res.sendFile(path.join(__dirname, '/public'));
+    res.sendFile(path.join(__dirname, '/public/portfolio2/index.html'));
 })
 
 
