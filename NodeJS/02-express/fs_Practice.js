@@ -24,3 +24,59 @@ const path = require('path');
 //     path.join(__dirname, 'Murphy/fs Test/tryThis/Regular Bros Show.txt'),
 //     (err) => {if(err) console.error(err); return;}
 // );
+
+// fs.rename(
+//     path.join(__dirname, 'Murphy/fs Test/tryThis/Regular Bros Show.txt'), 
+//     path.join(__dirname, 'Murphy/fs Test/Regular Bros Show.txt'),
+//     (error) => {
+//         if(error){
+//             console.error(error); 
+//             return;
+//         }
+//     }
+// )
+
+// fs.rmdir(
+//     path.join(__dirname, 'Murphy/fs Test/tryThis'), 
+//     (err) => {if(err){console.error(err);return;}}
+// );
+
+
+// fs.rename(
+//     path.join(__dirname, 'Murphy/fs Test/New Folder'), 
+//     path.join(__dirname, 'Murphy/fs Test/Answer'), 
+//     (err) => {if(err){console.error(err);return;}}
+// );
+
+fs.readdir(
+    path.join(__dirname, 'Murphy/fs Test'),
+    (err, files) => {
+        if(err){
+            console.error(err);
+            return;
+        }else{
+            files = files.filter(file => {return file.split(".").length == 2});
+            let lastWords = [];
+            files.forEach(file => {
+                let words = fs.readFileSync(path.join(__dirname, `Murphy/fs Test/${file}`), 'utf8', 
+                (err, content) => { 
+                    if(err){
+                        console.error(err);
+                    }
+                }).split(/\s+/);
+                lastWords.push(words[words.length-1]);
+            });
+            lastWords.forEach( word => {
+                fs.appendFile(
+                path.join(__dirname, `Murphy/fs Test/Answer/answer.js`), 
+                word + '\n', 
+                (err) => {
+                    if(err){
+                        console.error(err);
+                        return;
+                    }
+                })
+            })
+        }
+    }
+); 
