@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "stupid": "node 01-http-basics.js",
+    "dev": "nodemon app.js"
   },
   "keywords": [],
   "author": "Andrew Murphy <amurf26@outlook.com> (https://github.com/Dearborn42)",
