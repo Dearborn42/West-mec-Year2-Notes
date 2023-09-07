@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const json = require('./data.js');
 const app = express();
 
 // Set up static middleware
@@ -8,7 +9,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 app.get('/', (req, res) => {
     console.log(req.url);
-    res.sendFile(path.join(__dirname, '/public/portfolio2/index.html'));
+    res.send(json.products);
 })
 
 
