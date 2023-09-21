@@ -1,48 +1,56 @@
 const express = require('express');
 const router = express.Router();
 
-let {people} = requrie("../data");
+// Below here is to work with the router application
 
+let {people} = require('../data');
 
-router.get('/', (req, res) => {
-    res.json({success: true, data: people});
+router.get('/', (req,res)=>{
+    res.json({success:true,data:people});
+});
 
-})
-
-router.post('/', (req, res) => {
+router.post('/', (req,res)=>{
     console.log(req.body);
     const {name} = req.body;
-    if(name)
-        return res.status(201).json({success: true, person: name});
-    res.status(404).json({success: false, msg: "Please provide a name."});
-})
+    if(name){
+        return res.status(201).json({success:true,person:name});
+    }
+    res.status(404).json({success:false,msg:'Please provide a name'});
+});
 
-router.put('/:id', (req, res) => {
+// put request
+router.put('/:id', (req,res)=>{
     const {id} = req.params;
     const {name} = req.body;
-    const person = people.find((person) => person.id === Number(id));
-    if(!person)
-        return express.json({success: false});
-    const newPeople = people.map((person) => {
-        if(person.id === Number(id))
-            person.name = name
+    const person = people.find(person=>{return person.id === Number(id)});
+    if(!person){
+        return res.json({success:false, data:[]});
+    }
+
+    const newPeople = people.map(person=>{
+        if(person === Number(id)){
+            person.name = name;
+        }
         return person;
     })
 
-    res.status(202).json({data: newPeople, success: true});
+    res.status(200).json({success:true, data:newPeople});
 })
 
-router.delete('/:id', (req, res) => {
+// delete request
+router.delete('/:id', (req, res)=>{
     const {id} = req.params;
-    const person = people.find((person) => person.id === Number(id))
-    if(!person)
-        return express.json({success: false});
+    const person = people.find(person=>person.id === Number(id));
 
-    people = people.filter((person) => {
-        return person.id !== Number(id);
+    if(!person){
+        return res.status(404).json({success:false, msg:'No matching id found'});
+    }
+
+    people = people.filter(person=>{
+        return person.id != Number(id);
     })
+    return res.status(202).json({success:true, data:people});
+});
 
-    res.status(200).json({data: people})
-})
 
-module.exports = router; 
+module.exports = router;
