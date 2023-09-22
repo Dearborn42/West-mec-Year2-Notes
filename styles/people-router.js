@@ -3,7 +3,7 @@ const router = express.Router();
 
 // Below here is to work with the router application
 
-let {people} = require('../data');
+let {people} = require('../NodeJS/02-express/data');
 
 router.get('/', (req,res)=>{
     res.json({success:true,data:people});
@@ -19,16 +19,16 @@ router.post('/', (req,res)=>{
 });
 
 // put request
-router.put('/:id', (req,res)=>{
-    const {id} = req.params;
+router.put('/:prevName', (req,res)=>{
+    const {prevName} = req.params;
     const {name} = req.body;
-    const person = people.find(person=>{return person.id === Number(id)});
+    const person = people.find(person=>{return person.name === prevName});
     if(!person){
         return res.json({success:false, data:[]});
     }
 
     const newPeople = people.map(person=>{
-        if(person === Number(id)){
+        if(person === prevName){
             person.name = name;
         }
         return person;

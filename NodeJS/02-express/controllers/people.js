@@ -33,7 +33,8 @@ const updatePeople = (req,res)=>{
     }
 
     const newPeople = people.map(person=>{
-        if(person === Number(id)){
+        if(person.id === Number(id)){
+            console.log(name)
             person.name = name;
         }
         return person;
