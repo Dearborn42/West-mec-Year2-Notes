@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "stupid": "node 01-http-basics.js",
-    "dev": "nodemon 06-params-juqery.js"
+    "dev": "nodemon 11-router-app.js"
   },
   "keywords": [],
   "author": "Andrew Murphy <amurf26@outlook.com> (https://github.com/Dearborn42)",

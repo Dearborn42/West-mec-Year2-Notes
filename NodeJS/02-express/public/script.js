@@ -7,7 +7,8 @@ const fetchPeople = async() =>{
 
         // going through the data array and getting the data that holds the value of data
         const people = data.data.map((person)=>{
-            return '<h5>${person.name}</h5>';
+            const result =`<h5>${person.name}</h5> <button type="button" onclick="deletePerson(${person.id})">Delete</button> <button type="button" onclick="editPerson(${person.id})">Edit</button>`;
+            return result;
         })
 
         result.innerHTML = people.join("");
@@ -38,3 +39,27 @@ btn.addEventListener('click', async(event)=>{
     }
     input.value='';
 });
+
+
+function deletePerson(id){
+    fetch(`/api/people/${id}`, {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({id: id})
+    }).then((res) => {
+        if(res.status === 202)
+            window.location.reload();
+    })
+}
+
+function editPerson(id){
+    const newName = document.getElementById('name').value;
+    fetch(`/api/people/${id}`, {
+        method: "PUT",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({name: newName})
+    }).then((res) => {
+        if(res.status === 202)
+            window.location.reload();
+    })
+}
