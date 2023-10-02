@@ -1,10 +1,9 @@
 // npm install mongoose
 const mongoose = require('mongoose');
-require('dotenv').config();
 
 const connectDB = ()=>{
     // remember this is temporary and needs to be replaced
-    const connectString = process.env.MONGO_URI;
+    const connectString = 'mongodb+srv://nsanto591:CA1caiMongo626@cluster0.1qhbbun.mongodb.net/';
 
     mongoose.connect(connectString).
     then(()=>console.log('databse connected successfully')).
